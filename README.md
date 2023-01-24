@@ -28,4 +28,4 @@ This full-stack application uses a backend including Node, Express, and [Postgre
 
 This app is currently being built.
 
-While most of the back-end is complete, it is far from completed. Features to come will be a front end built with React.
+While most of the back-end is complete, it is far from completed. React client side is currently being built and plans for additional features are in the works.

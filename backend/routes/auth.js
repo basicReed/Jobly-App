@@ -23,7 +23,7 @@ router.post("/token", async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userAuthSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -36,7 +36,6 @@ router.post("/token", async function (req, res, next) {
   }
 });
 
-
 /** POST /auth/register:   { user } => { token }
  *
  * user must include { username, password, firstName, lastName, email }
@@ -48,9 +47,10 @@ router.post("/token", async function (req, res, next) {
 
 router.post("/register", async function (req, res, next) {
   try {
+    console.log("Got to post");
     const validator = jsonschema.validate(req.body, userRegisterSchema);
     if (!validator.valid) {
-      const errs = validator.errors.map(e => e.stack);
+      const errs = validator.errors.map((e) => e.stack);
       throw new BadRequestError(errs);
     }
 
@@ -58,9 +58,9 @@ router.post("/register", async function (req, res, next) {
     const token = createToken(newUser);
     return res.status(201).json({ token });
   } catch (err) {
+    console.log("Broken post");
     return next(err);
   }
 });
-
 
 module.exports = router;

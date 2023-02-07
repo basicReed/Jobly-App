@@ -10,7 +10,8 @@ function Company() {
 
   useEffect(() => {
     async function fetchData() {
-      const companyData = JoblyApi.getCompany(handle);
+      const companyData = await JoblyApi.getCompany(handle);
+      console.log(companyData);
       setCompany(companyData);
     }
     fetchData();

@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import JobCard from "./JobCard";
 import "./Company.css";
+import JoblyApi from "./Api";
 
 function Company() {
   const { handle } = useParams();
@@ -10,10 +10,8 @@ function Company() {
 
   useEffect(() => {
     async function fetchData() {
-      const companyData = await axios.get(
-        `http://localhost:3001/companies/${handle}`
-      );
-      setCompany(companyData.data.company);
+      const companyData = JoblyApi.getCompany(handle);
+      setCompany(companyData);
     }
     fetchData();
   }, []);

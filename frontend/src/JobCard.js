@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useContext } from "react";
 import { Card, CardText, CardBody, CardTitle, Button } from "reactstrap";
 import "./JobCard.css";

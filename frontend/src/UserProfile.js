@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import "./UserProfile.css";
+import JoblyApi from "./Api";
 
 function UserProfile({ user }) {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ function UserProfile({ user }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.patch(`/users/${user.username}`, formData);
+      const { data } = await JoblyApi.updateUser(user.username, formData);
     } catch (err) {
       console.log(err);
     }

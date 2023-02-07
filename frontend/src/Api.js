@@ -37,6 +37,16 @@ class JoblyApi {
     return data.user;
   }
 
+  static async updateUser(username, formData) {
+    let { data } = await axios.patch(`/users/${username}`, formData);
+    return data;
+  }
+
+  static async getCompany(handle) {
+    let { data } = await axios.get(`http://localhost:3001/companies/${handle}`);
+    return data.company;
+  }
+
   static async getAllCompanies() {
     let { data } = await axios.get(`${BASE_API_URL}/companies`);
     return data.companies;

@@ -1,0 +1,47 @@
+.card-body {
+  padding: 0;
+  width: 100%;
+}
+
+.card-content {
+  margin: 12px;
+}
+
+.card-title {
+  margin: 12px 12px 6px 12px;
+}
+
+.mid-text {
+  margin: 0 12px 6px 12px;
+}
+
+.sub-text {
+  margin: 0 12px 1px 12px;
+}
+
+.apply-button {
+  display: block;
+  margin-left: 80%;
+}
+
+@media screen and (max-width: 800px) {
+  .jobCard {
+    width: 28rem !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .jobCard {
+    width: 20rem !important;
+    padding: 10px !important;
+  }
+  .apply-button {
+    margin-left: 65%;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .jobCard {
+    width: 18rem !important;
+  }
+}

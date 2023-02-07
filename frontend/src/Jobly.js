@@ -1,12 +1,16 @@
 import React from "react";
-import Navbar from "./Navbar";
+import "./Jobly.css";
 
-function Jobly() {
+function Jobly({ user }) {
   return (
-    <div>
-      <Navbar />
-      <h1>This is Jobly</h1>
-      <p>Let's find you a job</p>
+    <div className="Homepage">
+      <div className="center-content">
+        <h1>
+          <strong>Jobly</strong>
+        </h1>
+        <p>All the jobs in one, convenient place.</p>
+        <h3>{`Welcome Back, ${user.firstName}`}</h3>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,36 @@
+a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+}
+
+.companyCard {
+  display: inline-block;
+}
+
+@media screen and (max-width: 700px) {
+  .companyCard {
+    width: 28rem !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .companyCard {
+    width: 20rem !important;
+  }
+}
+
+.cardhover:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: 0.5s;
+  color: #43486e !important;
+}
+
+.card-text {
+  margin: 12px;
+}
+
+.card-text:last-child {
+  margin-bottom: 12px;
+}

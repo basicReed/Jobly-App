@@ -1,29 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "./App";
+import { Navbar, NavItem, Nav, NavbarToggler, Collapse } from "reactstrap";
+import "./NavBar.css";
 
-function Navbar() {
-  const { logoutUser } = useContext(AuthContext);
+function NavBar({ user }) {
+  const { removeUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    logoutUser();
+    removeUser();
     navigate("/");
   };
 
   return (
-    <nav>
-      <h2 onClick={() => navigate("/jobly")}>Jobly</h2>
-      <NavLink exact="true" to="/jobs" className="navbar-brand">
-        Jobs
-      </NavLink>
-      <NavLink exact="true" to="/companies" className="navbar-brand">
-        Companies
-      </NavLink>
-      <button onClick={handleLogout}>Logout</button>
-    </nav>
+    <div>
+      <Navbar
+        fixed="top"
+        expand="navbar-expand"
+        className="justify-content-between"
+      >
+        <NavLink exact="true" to="/jobly" className="navbar-brand">
+          Jobly
+        </NavLink>
+
+        <Nav className="ms-auto" navbar-nav>
+          <NavItem className="me-4">
+            <NavLink exact="true" to="/companies">
+              Companies
+            </NavLink>
+          </NavItem>
+          <NavItem className="me-4">
+            <NavLink exact="true" to="/jobs">
+              Jobs
+            </NavLink>
+          </NavItem>
+          <NavItem className="me-4">
+            <NavLink exact="true" to="/profile">
+              Profile
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink exact="true" onClick={handleLogout} to="/">
+              {`Logout ${localStorage.getItem("username")}`}
+            </NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
+    </div>
   );
 }
 
-export default Navbar;
+export default NavBar;

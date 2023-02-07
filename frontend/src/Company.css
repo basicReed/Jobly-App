@@ -1,0 +1,32 @@
+.company-name {
+  width: 40rem;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .companies-wrapper {
+    margin: 2rem 0;
+  }
+  .company-name {
+    width: 28rem !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .companies-wrapper {
+    margin: 3rem 0;
+  }
+  .company-name {
+    width: 20rem !important;
+    padding: 10px !important;
+  }
+  .apply-button {
+    margin-left: 65%;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .company-name {
+    width: 18rem !important;
+  }
+}

@@ -1,0 +1,38 @@
+.profile-form {
+  margin: 0 auto;
+  width: 33.33333333%;
+  min-width: 230px;
+  padding-top: 3rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .profile-form {
+    width: 60% !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile-form {
+    width: 80% !important;
+    padding-top: 5rem;
+  }
+}
+
+h1 {
+  color: white;
+}
+
+.card-form {
+  padding: 24px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-form button {
+  width: 100%;
+}
+
+label {
+  width: 100%;
+}

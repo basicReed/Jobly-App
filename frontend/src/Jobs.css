@@ -1,0 +1,15 @@
+.jobs-wrapper {
+  margin: 50px 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center align items horizontally */
+  justify-content: center; /* center align items vertically */
+}
+
+.jobs-wrapper h5 {
+  color: white;
+}
+
+.SearchForm {
+  width: 40rem;
+}

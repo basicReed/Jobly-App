@@ -1,0 +1,28 @@
+.companies-wrapper {
+  margin: 50px 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.companies-wrapper h5 {
+  color: white;
+}
+
+.SearchForm {
+  width: 40rem;
+}
+
+@media screen and (max-width: 800px) {
+  .SearchForm {
+    width: 20rem !important;
+  }
+}
+
+.companiesList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

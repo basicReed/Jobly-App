@@ -1,0 +1,23 @@
+.Homepage {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Homepage h1 {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.Homepage p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.center-content {
+  display: inline-block;
+  text-align: center;
+  color: white;
+}

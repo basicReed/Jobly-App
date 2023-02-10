@@ -8,13 +8,16 @@ import "./Companies.css";
 function Companies() {
   const [searchTerm, setSearchTerm] = useState("");
   const [companies, setCompanies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearch = async (event) => {
     event.preventDefault();
-    console.log("search: ", searchTerm);
+    setIsLoading(true);
+
     try {
       const companies = await JoblyApi.searchCompanies(searchTerm);
       setCompanies(companies);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -22,8 +25,14 @@ function Companies() {
 
   useEffect(() => {
     async function fetchData() {
-      let companiesList = await JoblyApi.getAllCompanies();
-      setCompanies(companiesList);
+      setIsLoading(true);
+      try {
+        let companiesList = await JoblyApi.getAllCompanies();
+        setCompanies(companiesList);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchData();
   }, []);
@@ -46,7 +55,9 @@ function Companies() {
         </Row>
       </Form>
       <div className="companiesList">
-        {companies.length > 0 ? (
+        {isLoading ? (
+          <h5>Loading...</h5>
+        ) : companies.length > 0 ? (
           companies.map((company) => (
             <CompanyCard
               key={company.handle}

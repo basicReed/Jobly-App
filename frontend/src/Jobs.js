@@ -7,13 +7,16 @@ import "./Jobs.css";
 function Jobs() {
   const [searchTerm, setSearchTerm] = useState("");
   const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearch = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     try {
       const jobsList = await JoblyApi.searchJobs(searchTerm);
       setJobs(jobsList);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -21,9 +24,12 @@ function Jobs() {
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
+
       try {
         let jobsList = await JoblyApi.getAllJobs();
         setJobs(jobsList);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -50,7 +56,9 @@ function Jobs() {
       </Form>
 
       <div className="jobsList">
-        {jobs.length > 0 ? (
+        {isLoading ? (
+          <h5>Loading...</h5>
+        ) : jobs.length > 0 ? (
           jobs.map((job) => (
             <JobCard
               key={job.id}

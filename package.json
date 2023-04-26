@@ -1,0 +1,19 @@
+{
+  "name": "jobly",
+  "version": "1.0.0",
+  "description": "This is the Express backend for Jobly, version 2.",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basicReed/Jobly-App.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basicReed/Jobly-App/issues"
+  },
+  "homepage": "https://github.com/basicReed/Jobly-App#readme"
+}

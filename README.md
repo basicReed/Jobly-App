@@ -1,6 +1,6 @@
 # Jobly Backend
 
-This is the Express backend for Jobly, version 2.
+This is the ReactJS frontend & Node.js/Express backend for Jobly, version 2.
 
 ## Description
 

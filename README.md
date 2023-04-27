@@ -22,10 +22,8 @@ jest -i
 
 ## Technologies
 
-This full-stack application uses a backend including Node, Express, and [PostgreSQL](https://github.com/postgres/postgres) database. The front end will uses React.
+This full-stack application uses a backend including Node, Express, and [PostgreSQL](https://github.com/postgres/postgres) database. The front end uses React, CSS, Reactrap, and a number of other dependancies.
 
 ## Looking Forward
 
-This app is currently being built.
-
-While most of the back-end is complete, it is far from completed. React client side is currently being built and plans for additional features are in the works.
+- The ability for company loggins as well as messaging between companies and future employees.

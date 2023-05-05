@@ -2,6 +2,8 @@
 
 This is the ReactJS frontend & Node.js/Express backend for Jobly, version 2.
 
+LIVE DEMO: http://jordans-jobly-app.sh/
+
 ## Description
 
 This full-stack application which will be used to explore and "apply" for jobs online. This project has no intention of being for real jobs or commercial use. This is purely a personal project.

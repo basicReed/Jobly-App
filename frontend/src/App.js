@@ -11,50 +11,49 @@ import NavBar from "./NavBar";
 import Loading from "./Loading";
 import JoblyApi from "./Api";
 import "./App.css";
+import useLocalStorage from "./useLocalStorage";
+import jwt_decode from "jwt-decode";
+
 export const AuthContext = createContext();
+export const TOKEN_STORAGE_ID = "token";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({});
-  const [appliedJobs, setAppliedJobs] = useState([]);
-
-  // const updateAppliedJobs = (id) => {
-  //   setAppliedJobs({ ...appliedJobs, id });
-  // };
+  const [user, setUser] = useState(null);
+  // const [appliedJobs, setAppliedJobs] = useState([]);
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
 
   /**
    * Checks if token is present & setsIsAthenticated
    */
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
-
-    if (token) {
-      setIsAuthenticated(true);
-      // get and set user data for each page if authenticated
-      async function fetchData() {
+    async function fetchData() {
+      if (token) {
         try {
-          let userData = await JoblyApi.getUser(username);
+          let decodedToken = jwt_decode(token);
+          let userData = await JoblyApi.getUser(decodedToken.username);
           setUser(userData);
         } catch (error) {
           console.log(error);
+          setUser(null);
         }
       }
-      fetchData();
-    } else {
-      setIsAuthenticated(false);
+      setIsLoading(false);
     }
-  }, []);
+    setIsLoading(true);
+    fetchData();
+  }, [token]);
 
   /**
    *  Stores user data in local storage and sets authentication
    */
-  async function storeUser(token, username) {
+  async function storeUser(newToken, username) {
     //store token in LS
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", newToken);
     localStorage.setItem("username", username);
-    await setIsAuthenticated(true);
+    setIsAuthenticated(true);
+    setToken(newToken);
   }
 
   /**
@@ -62,26 +61,42 @@ function App() {
    */
   async function removeUser() {
     localStorage.clear();
-    await setIsAuthenticated(false);
+    setIsAuthenticated(false);
+    setUser(null);
+    setToken(null);
+    // setIsLoading(true);
   }
+
+  if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="App-background">
       <AuthContext.Provider
         value={{
           isAuthenticated,
+          setIsAuthenticated,
           removeUser,
           user,
         }}
       >
         <BrowserRouter>
           {/* {isLoading ? <Loading /> : null} */}
-          {isAuthenticated ? <NavBar /> : null}
+          {user ? <NavBar /> : null}
           <Routes>
-            <Route path="/" exact="true" element={<Navigate to="/login" />} />
+            {/* Check login & route | redirect if no route */}
+            <Route
+              path="/*"
+              element={
+                isAuthenticated ? (
+                  <Navigate to="/jobly" />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            {/* <Route path="/" exact="true" element={<Navigate to="/login" />} /> */}
             <Route
               path="/login"
-              exact="true"
               element={
                 isAuthenticated ? (
                   <Navigate to="/jobly" />
@@ -92,7 +107,6 @@ function App() {
             />
             <Route
               path="/register"
-              exact="true"
               element={
                 isAuthenticated ? (
                   <Navigate to="/jobly" />
@@ -102,50 +116,12 @@ function App() {
               }
             />
 
-            <Route
-              path="/"
-              exact="true"
-              element={isAuthenticated ? <NavBar /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/jobly"
-              exact="true"
-              element={
-                isAuthenticated ? (
-                  <Jobly user={user} />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/companies"
-              exact="true"
-              element={
-                isAuthenticated ? <Companies /> : <Navigate to="/login" />
-              }
-            />
-            <Route
-              path="/jobs"
-              exact="true"
-              element={isAuthenticated ? <Jobs /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/profile"
-              exact="true"
-              element={
-                isAuthenticated ? (
-                  <UserProfile user={user} />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-
-            <Route
-              path="/companies/:handle"
-              element={isAuthenticated ? <Company /> : <Navigate to="/login" />}
-            />
+            <Route path="/" element={<NavBar />} />
+            <Route path="/jobly" element={<Jobly user={user} />} />
+            <Route path="/companies" element={<Companies />} />
+            <Route path="/jobs" element={<Jobs />} />
+            <Route path="/profile" element={<UserProfile user={user} />} />
+            <Route path="/companies/:handle" element={<Company />} />
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>

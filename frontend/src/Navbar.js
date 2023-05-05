@@ -1,16 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "./App";
-import { Navbar, NavItem, Nav, NavbarToggler, Collapse } from "reactstrap";
+import { Navbar, NavItem, Nav } from "reactstrap";
 import "./NavBar.css";
 
 function NavBar({ user }) {
   const { removeUser } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const handleLogout = () => {
     removeUser();
-    navigate("/");
   };
 
   return (
@@ -41,7 +39,7 @@ function NavBar({ user }) {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink exact="true" onClick={handleLogout} to="/">
+            <NavLink exact="true" onClick={handleLogout} to="/login">
               {`Logout ${localStorage.getItem("username")}`}
             </NavLink>
           </NavItem>

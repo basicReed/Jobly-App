@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import JoblyApi from "./Api";
@@ -31,7 +31,7 @@ function Login({ storeUser }) {
                   type="text"
                   placeholder="Username"
                   value={username}
-                  autocomplete="current-username"
+                  autoComplete="current-username"
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Label>
@@ -43,7 +43,7 @@ function Login({ storeUser }) {
                   type="password"
                   placeholder="Password"
                   value={password}
-                  autocomplete="current-password"
+                  autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Label>

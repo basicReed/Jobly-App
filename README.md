@@ -2,7 +2,7 @@
 
 This is the ReactJS frontend & Node.js/Express backend for Jobly, version 2.
 
-LIVE DEMO: [Jobly](https://jobly-react-jordan.surge.sh/)
+LIVE DEMO: [Jobly](https://jobly-react-jordan.surge.sh/login)
 
 ## Description
 
